@@ -1,8 +1,12 @@
 #!/bin/bash
 
-LOGFILE="agent_logs/init.log"
+BASE_PROMPT=$1
+LOGFILE="agent_logs/main.log"
+echo $(date) " INIT START" >LOGFILE
 
 codex --yolo \
   --model gpt-5.3-codex \
-  exec "$(cat BASE_PROMPT.md) $(cat INIT_PROMPT.md)" \
+  exec "$(BASE_PROMPT) $(cat INIT_PROMPT.md)" \
   &>"$LOGFILE"
+
+echo $(date) " INIT FINISH" >LOGFILE
